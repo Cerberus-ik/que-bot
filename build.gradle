@@ -1,0 +1,23 @@
+group 'Cerberus'
+version '0.0.1.alpha'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'net.dv8tion:JDA:3.0.0_157'
+    compile fileTree(dir: "/dependencies", includes: ['*.jar'])
+}
+
+jar{
+    from configurations.compile.collect{ zipTree it}
+    manifest.attributes "Main-Class": "net.cerberus.queBot.Main"
+}
+
