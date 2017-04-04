@@ -7,6 +7,7 @@ import net.cerberus.queBot.io.LogLevel;
 import net.cerberus.queBot.io.LogReason;
 import net.cerberus.queBot.io.Logger;
 import net.cerberus.queBot.io.SoundManager;
+import net.cerberus.queBot.io.config.ConfigUtil;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -28,13 +29,16 @@ public class Main {
     static private String guildId = "225097021671866368";
     static private SoundManager soundManager;
     static private QueStatus queStatus;
+    static private String token;
 
     public static void main(String[] args){
         try {
+            ConfigUtil.loadConfig();
+            token = ConfigUtil.getToken().replaceAll("\"", "");
             queStatus = QueStatus.NOT_JOINED;
             soundManager = new SoundManager();
             soundManager.initialize();
-            jda = new JDABuilder(AccountType.CLIENT).setToken("").buildBlocking();
+            jda = new JDABuilder(AccountType.CLIENT).setToken(token).buildBlocking();
             jda.addEventListener(new MessageListener());
         } catch (LoginException | InterruptedException | RateLimitedException e) {
             e.printStackTrace();
