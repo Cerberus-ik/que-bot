@@ -18,12 +18,13 @@ The bot is based on [JDA](https://github.com/DV8FromTheWorld/JDA) (Java based di
 # Installation
 1. Run the bot once
 2. Open the newly created config.json
-3. Add your own discord token
-3.1 Press STRG + Shift + I
-3.2 Go to "Application" -> "Storage" -> "Local Storage" -> "https://discordapp.com" -> copy the token without "" in the config file.
+3. Add your own discord token <br>
+3.1 Press STRG + Shift + I <br>
+3.2 Go to "Application" -> "Storage" -> "Local Storage" -> "https://discordapp.com" -> Token <br> 
+3.3 Copy the token in the config file. (without the """)
 4. Join your favorite guild
 5. Register your SC-Account
-6. Start the bot
+6. Restart the bot
 
 ### Build process
 ###### Java-8 required
