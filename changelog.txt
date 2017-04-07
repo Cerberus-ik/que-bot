@@ -1,0 +1,12 @@
+Latest: v0.2.0-alpha
+
+v0.0.1-alpha
++Initial release
+
+v0.1.0-alpha
++added fuzzy timers
++more internal work
+~Fixed the frozen output log
+
+v0.2.0-alpha
++Version check

@@ -1,5 +1,5 @@
 group 'Cerberus'
-version '0.0.1.alpha'
+version '0.1.0.alpha'
 
 apply plugin: 'java'
 
@@ -21,6 +21,6 @@ dependencies {
 
 jar{
     from configurations.compile.collect{ zipTree it}
-    manifest.attributes "Main-Class": "net.cerberus.queBot.Main"
+    manifest.attributes "Main-Class": "net.cerberus.queueBot.Main"
 }
 

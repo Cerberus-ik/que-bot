@@ -1,10 +1,7 @@
-package net.cerberus.queBot.io;
-
-import org.json.JSONObject;
+package net.cerberus.queueBot.io;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.charset.Charset;
 
 /**
  * Simple class for accessing resource files.

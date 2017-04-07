@@ -1,13 +1,13 @@
-package net.cerberus.queBot.io;
+package net.cerberus.queueBot.io;
 
 
 public enum LogReason {
 
+    BOT("Bot"),
     CONFIG("Config"),
     AFK_CHECK("AFK-Check"),
-    QUE_UPDATE("Que-Update"),
-    QUE_JOIN("Que-Join"),
-    QUE_JOINED("Que-Joined");
+    QUEUE_UPDATE("Queue-Update"),
+    QUEUE_JOIN("Queue-Join");
 
     private String s;
 

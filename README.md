@@ -1,16 +1,17 @@
-# Que-Bot
-**Latest Version: 0.0.1 Alpha**
+# Queue-Bot
+**Latest Version: 0.1.0 Alpha**
 
-The que-bot is a discord selfbot for dropper guilds. You need to set your discord Token in the config file.
+The queue-bot is a discord selfbot for dropper guilds. You need to set your discord Token in the config file.
 DO NOT SHARE THE TOKEN (or the config) with anybody. A full tutorial will follow shortly.
 
-  - Auto que join
+  - Auto queue join
   - Auto afk check
-  - Auto que updates
-
+  - Auto queue updates
+  - Anti bot detection
+  
 # Planned features!
-  - Que time estimates
-  - Smart que time updates
+  - Queue time estimates
+  - Smart queue time updates
 
 The bot is based on [JDA](https://github.com/DV8FromTheWorld/JDA) (Java based discord api)
 

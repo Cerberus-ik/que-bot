@@ -1,4 +1,4 @@
-package net.cerberus.queBot.io;
+package net.cerberus.queueBot.io;
 
 
 import java.text.SimpleDateFormat;

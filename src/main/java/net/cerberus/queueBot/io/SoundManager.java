@@ -1,4 +1,4 @@
-package net.cerberus.queBot.io;
+package net.cerberus.queueBot.io;
 
 
 import kuusisto.tinysound.Sound;
@@ -20,5 +20,9 @@ public class SoundManager {
 
     public void alert(){
         alertSound.play();
+    }
+
+    public void shutdown(){
+        TinySound.shutdown();
     }
 }

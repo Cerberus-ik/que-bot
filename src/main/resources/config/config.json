@@ -1,3 +1,11 @@
 {
-  "token": ""
+  "token": "",
+  "waitingTime": 0,
+  "waitingFuzzyTime": 0,
+
+  "guildSettings": {
+    "guildId": "225097021671866368",
+    "channelId": "255421006984904705",
+    "botId": "258012836599562240"
+  }
 }
