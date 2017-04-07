@@ -24,7 +24,7 @@ The bot is based on [JDA](https://github.com/DV8FromTheWorld/JDA) (Java based di
 3.3 Copy the token in the config file. (without the """)
 4. Join your favorite guild
 5. Register your SC-Account
-6. Restart the bot
+6. Start/Restart the bot
 
 ### Build process
 ###### Java-8 required
