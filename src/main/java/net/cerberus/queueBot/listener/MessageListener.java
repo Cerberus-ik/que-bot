@@ -1,7 +1,6 @@
 package net.cerberus.queueBot.listener;
 
 import net.cerberus.queueBot.Main;
-import net.cerberus.queueBot.bot.BotStatus;
 import net.cerberus.queueBot.common.QueueStatus;
 import net.cerberus.queueBot.io.LogLevel;
 import net.cerberus.queueBot.io.LogReason;
@@ -53,13 +52,15 @@ public class MessageListener extends ListenerAdapter{
                 event.getJDA().getUserById(Main.getConfig().getBotId()).getPrivateChannel().sendMessage("!join" + joinMessage).queue();
                 Logger.logMessage("New drop is starting!", LogLevel.INFO, LogReason.QUEUE_JOIN);
                 Main.getSoundManager().alert();
+            } else if (event.getMessage().getRawContent().contains("have been accepted to a drop")) {
+                event.getJDA().getUserById(Main.getConfig().getBotId()).getPrivateChannel().sendMessage("!q").queue();
             }
         }
 
         /* Testing channel. */
-        if(event.getChannel().getId().equals("199899997825662977")){
+        if (event.getChannel().getId().equals("199899997825662977") && event.getAuthor().getId().equals("174963408196599808")) {
             if(event.getMessage().getRawContent().contains("A drop is starting")){
-                String joinMessage = StringUtils.substringAfter(event.getMessage().getRawContent(), "!join");
+                String joinMessage = StringUtils.substringAfter(event.getMessage().getRawContent(), "!join").replaceAll("`", "");
                 event.getAuthor().getPrivateChannel().sendMessage("!join" + joinMessage).queue();
                 Logger.logMessage("New drop is starting!", LogLevel.INFO, LogReason.QUEUE_JOIN);
                 Main.getSoundManager().alert();

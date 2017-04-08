@@ -10,3 +10,5 @@ v0.1.0-alpha
 
 v0.2.0-alpha
 +Version check
++Smart que updates
+~Many bug fixes

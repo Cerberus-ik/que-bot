@@ -3,12 +3,12 @@ package net.cerberus.queueBot.bot;
 
 import net.cerberus.queueBot.Main;
 import net.cerberus.queueBot.common.QueueStatus;
-import net.cerberus.queueBot.listener.MessageListener;
 import net.cerberus.queueBot.io.LogLevel;
 import net.cerberus.queueBot.io.LogReason;
 import net.cerberus.queueBot.io.Logger;
 import net.cerberus.queueBot.io.SoundManager;
 import net.cerberus.queueBot.io.config.Config;
+import net.cerberus.queueBot.listener.MessageListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -108,7 +108,7 @@ public class Bot {
             Logger.logMessage("You are already in the queue, waiting for the drop to start.", LogLevel.INFO, LogReason.QUEUE_UPDATE);
         } else if (queueStatus.equals(QueueStatus.NOT_JOINED_AVAILABLE)) {
             Logger.logMessage("Drop is running, joining que.", LogLevel.INFO, LogReason.QUEUE_UPDATE);
-            joinRunningQue();
+            joinRunningQueue();
         } else if (queueStatus.equals(QueueStatus.UNKNOWN)) {
             Logger.logMessage("Failed to retrieve que status.", LogLevel.WARNING, LogReason.QUEUE_UPDATE);
         }
@@ -119,7 +119,7 @@ public class Bot {
      * It will retrieve the latest 50 messages from the drop channel.
      * If the bot finds no "starting que" message the bot waits for the next drop.
      */
-    private void joinRunningQue() {
+    private void joinRunningQueue() {
         MessageHistory messageHistory = jda.getTextChannelById(config.getChannelId()).getHistory();
         for (Message message : messageHistory.retrievePast(50).complete()) {
             if (message.getRawContent().contains("A drop is starting")) {
@@ -127,6 +127,8 @@ public class Bot {
                 waitBeforeAction();
                 jda.getUserById(config.getBotId()).getPrivateChannel().sendMessage("!join" + joinMessage).queue();
                 Logger.logMessage("Joined a running drop, expect longer queue times!", LogLevel.INFO, LogReason.QUEUE_JOIN);
+                waitBeforeAction();
+                jda.getUserById(config.getBotId()).getPrivateChannel().sendMessage("!q").queue();
                 soundManager.alert();
                 return;
             }
@@ -178,10 +180,20 @@ public class Bot {
      */
     public void waitBeforeAction() {
         try {
-            int fuzzyTime = (int) config.getWaitingFuzzyTime();
-            int waitingTime = (int) config.getWaitingTime();
-            int sleep = waitingTime * 1000 + new Random().nextInt(fuzzyTime) * 1000;
-            Thread.sleep(sleep);
+            long fuzzyTime = config.getWaitingFuzzyTime();
+            long waitingTime = config.getWaitingTime();
+            Random random = new Random();
+
+            long sleep;
+            if (fuzzyTime <= 0) {
+                sleep = waitingTime * 1000;
+            } else {
+                sleep = waitingTime * 1000 + random.nextInt((int) (fuzzyTime * 1000));
+            }
+
+            if (sleep > 0) {
+                Thread.sleep(sleep);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -195,4 +207,12 @@ public class Bot {
         jda.shutdown();
     }
 
+    /**
+     * Will return the current buildId.
+     *
+     * @return buildId.
+     */
+    public String getBuildId() {
+        return "020-a";
+    }
 }

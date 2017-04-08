@@ -1,5 +1,6 @@
 group 'Cerberus'
-version '0.1.0.alpha'
+version '0.2.0.alpha'
+String buildId = '020-a'
 
 apply plugin: 'java'
 
@@ -9,6 +10,7 @@ repositories {
     mavenCentral()
     jcenter()
 }
+
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
@@ -24,3 +26,10 @@ jar{
     manifest.attributes "Main-Class": "net.cerberus.queueBot.Main"
 }
 
+
+task finalize << {
+    def file = new File('version.txt')
+    file.text = version + System.lineSeparator() + buildId
+}
+
+build.finalizedBy(finalize)
