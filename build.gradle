@@ -1,6 +1,6 @@
 group 'Cerberus'
-version '0.2.0.alpha'
-String buildId = '020-a'
+version '0.2.1.alpha'
+String buildId = '021-a'
 
 apply plugin: 'java'
 

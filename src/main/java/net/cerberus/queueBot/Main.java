@@ -25,7 +25,6 @@ public class Main {
 
 
     public static void main(String[] args){
-        checkForUpdate();
         config = ConfigUtil.loadConfig();
         if(config == null){
             Logger.logMessage("Invalid config.json, delete the file to reset the config.", LogLevel.WARNING, LogReason.CONFIG);
@@ -43,6 +42,7 @@ public class Main {
         botBuilder.setSoundManager(soundManager);
         bot = botBuilder.build();
         bot.initialize();
+        checkForUpdate();
         bot.checkCurrentQueueStatus();
     }
 
